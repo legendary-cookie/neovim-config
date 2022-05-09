@@ -8,54 +8,6 @@ return require('packer').startup(function(use)
         config = 'vim.cmd[[colorscheme gruvbox]]'
     }
     -- UI
-    use {
-        'lewis6991/gitsigns.nvim',
-        requires = {'nvim-lua/plenary.nvim'},
-        config = function()
-            require('gitsigns').setup {
-                signs = {
-                    add = {
-                        hl = "GitSignsAdd",
-                        text = "+",
-                        numhl = "GitSignsAddNr",
-                        linehl = "GitSignsAddLn"
-                    },
-                    change = {
-                        hl = "GitSignsChange",
-                        text = "*",
-                        numhl = "GitSignsChangeNr",
-                        linehl = "GitSignsChangeLn"
-                    },
-                    delete = {
-                        hl = "GitSignsDelete",
-                        text = "-",
-                        numhl = "GitSignsDeleteNr",
-                        linehl = "GitSignsDeleteLn"
-                    },
-                    topdelete = {
-                        hl = "GitSignsDelete",
-                        text = "‾",
-                        numhl = "GitSignsDeleteNr",
-                        linehl = "GitSignsDeleteLn"
-                    },
-                    changedelete = {
-                        hl = "GitSignsChange",
-                        text = "~",
-                        numhl = "GitSignsChangeNr",
-                        linehl = "GitSignsChangeLn"
-                    }
-                },
-                numhl = false,
-                linehl = false,
-                watch_gitdir = {interval = 1000, follow_files = true},
-                current_line_blame_opts = {delay = 1000, position = "eol"},
-                sign_priority = 6,
-                update_debounce = 100,
-                status_formatter = nil,
-                diff_opts = {internal = true}
-            }
-        end
-    }
     use 'lukas-reineke/indent-blankline.nvim'
     use 'Pocco81/TrueZen.nvim'
     use {
