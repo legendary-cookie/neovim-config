@@ -17,6 +17,8 @@ function M.setup()
     kb.map('ni', 'lua require("package-info").install()')
     kb.map('nr', 'lua require("package-info").reinstall()')
     kb.map('v', 'CHADopen')
+    kb.map('gg', 'Neogit')
+    kb.map('gc', 'lua require("neogit").open({ "commit" })')
 
     -- Move to previous/next
     map('n', '<A-,>', ':BufferPrevious<CR>', opts)
