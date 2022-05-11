@@ -63,28 +63,34 @@ return require('packer').startup({
             'nvim-telescope/telescope.nvim',
             requires = {{'nvim-lua/plenary.nvim'}}
         }
+        -- Comments
+        use {
+            'b3nj5m1n/kommentary',
+            config = function()
+		local kommconf = require('kommentary.config')
+		kommconf.use_default_mappings()
+                --kommconf.use_extended_mappings()
+            end
+        }
         -- Git
         use {
             'sindrets/diffview.nvim',
             requires = 'nvim-lua/plenary.nvim',
             config = function()
-                local cb = require'diffview.config'.diffview_callback
+                -- local cb = require'diffview.config'.diffview_callback
                 require'diffview'.setup {diff_binaries = true}
             end
         }
         use {
+            'lewis6991/gitsigns.nvim',
+            config = function() require('gitsigns').setup() end
+        }
+        use {
             'TimUntersberger/neogit',
-            requires = {
-		    'nvim-lua/plenary.nvim',
-		    'sindrets/diffview.nvim'
-	    },
+            requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'},
             config = function()
                 local neogit = require('neogit')
-                neogit.setup {
-			integrations = {
-				diffview = true
-			}
-		}
+                neogit.setup {integrations = {diffview = true}}
             end
         }
         -- Utility
