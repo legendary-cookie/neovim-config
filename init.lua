@@ -11,6 +11,7 @@ return require('packer').startup({
             config = 'vim.cmd[[colorscheme gruvbox]]'
         }
         -- UI
+        use {'stevearc/dressing.nvim'}
         use {
             'lukas-reineke/indent-blankline.nvim',
             config = function()
@@ -19,6 +20,16 @@ return require('packer').startup({
                 }
             end
         }
+	use {
+		'nkakouros-original/numbers.nvim',
+		config = function ()
+			require('numbers').setup {
+				excluded_filetypes = {
+					'dashboard', 'packer', 'guihua'
+				}
+			}
+		end
+	}
         use {
             'Pocco81/TrueZen.nvim',
             cmd = {'TZFocus', 'TZAtaraxis', 'TZMinimalist'}
@@ -31,10 +42,10 @@ return require('packer').startup({
         -- Telescope
         use {
             'nvim-telescope/telescope.nvim',
-            requires = {{'nvim-lua/plenary.nvim'}},
-            cmd = 'Telescope'
+            requires = {{'nvim-lua/plenary.nvim'}}
         }
         -- Utility
+        use 'jghauser/mkdir.nvim'
         use {
             "folke/which-key.nvim",
             config = function()
@@ -66,6 +77,12 @@ return require('packer').startup({
                 }
             end
         }
+	use {
+		'kosayoda/nvim-lightbulb',
+		config = {
+			vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+		}
+	}
         use {
             'nvim-treesitter/nvim-treesitter',
             run = 'vim.cmd[[:TSUpdate]]',
@@ -75,6 +92,14 @@ return require('packer').startup({
                     highlight = {enable = true}
                 }
             end
+        }
+        use {
+            'sudormrfbin/cheatsheet.nvim',
+
+            requires = {
+                {'nvim-telescope/telescope.nvim'}, {'nvim-lua/popup.nvim'},
+                {'nvim-lua/plenary.nvim'}
+            }
         }
         use {
             "williamboman/nvim-lsp-installer",
