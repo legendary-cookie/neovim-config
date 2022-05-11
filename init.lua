@@ -65,11 +65,26 @@ return require('packer').startup({
         }
         -- Git
         use {
-            'TimUntersberger/neogit',
+            'sindrets/diffview.nvim',
             requires = 'nvim-lua/plenary.nvim',
             config = function()
+                local cb = require'diffview.config'.diffview_callback
+                require'diffview'.setup {diff_binaries = true}
+            end
+        }
+        use {
+            'TimUntersberger/neogit',
+            requires = {
+		    'nvim-lua/plenary.nvim',
+		    'sindrets/diffview.nvim'
+	    },
+            config = function()
                 local neogit = require('neogit')
-                neogit.setup {}
+                neogit.setup {
+			integrations = {
+				diffview = true
+			}
+		}
             end
         }
         -- Utility
