@@ -20,16 +20,35 @@ return require('packer').startup({
                 }
             end
         }
-	use {
-		'nkakouros-original/numbers.nvim',
-		config = function ()
-			require('numbers').setup {
-				excluded_filetypes = {
-					'dashboard', 'packer', 'guihua'
-				}
-			}
-		end
-	}
+        use {
+            'vuki656/package-info.nvim',
+            requires = "MunifTanjim/nui.nvim",
+            config = function() require('package-info').setup() end
+        }
+        use {
+            'ms-jpq/chadtree',
+            run = ":CHADdeps"
+            -- cmd = {"CHADopen"}
+        }
+        use {
+            'romgrk/barbar.nvim',
+            requires = {'kyazdani42/nvim-web-devicons'},
+            config = function()
+                vim.g.bufferline = {
+                    closable = false,
+                    clickable = false,
+                    exclude_ft = {'dashboard', 'packer', 'guihua'}
+                }
+            end
+        }
+        use {
+            'nkakouros-original/numbers.nvim',
+            config = function()
+                require('numbers').setup {
+                    excluded_filetypes = {'dashboard', 'packer', 'guihua'}
+                }
+            end
+        }
         use {
             'Pocco81/TrueZen.nvim',
             cmd = {'TZFocus', 'TZAtaraxis', 'TZMinimalist'}
@@ -43,6 +62,15 @@ return require('packer').startup({
         use {
             'nvim-telescope/telescope.nvim',
             requires = {{'nvim-lua/plenary.nvim'}}
+        }
+        -- Git
+        use {
+            'TimUntersberger/neogit',
+            requires = 'nvim-lua/plenary.nvim',
+            config = function()
+                local neogit = require('neogit')
+                neogit.setup {}
+            end
         }
         -- Utility
         use 'jghauser/mkdir.nvim'
@@ -77,12 +105,12 @@ return require('packer').startup({
                 }
             end
         }
-	use {
-		'kosayoda/nvim-lightbulb',
-		config = {
-			vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-		}
-	}
+        use {
+            'kosayoda/nvim-lightbulb',
+            config = {
+                vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+            }
+        }
         use {
             'nvim-treesitter/nvim-treesitter',
             run = 'vim.cmd[[:TSUpdate]]',
